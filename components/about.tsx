@@ -1,22 +1,38 @@
-"use client"
+"use client";
 
-import { useInView } from "react-intersection-observer"
-import dynamic from "next/dynamic"
-import { ArrowDown } from "lucide-react"
-import { Button } from "./ui/button"
-import { scrollToSection } from "@/lib/utils"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import dynamic from "next/dynamic";
+import { ArrowDown } from "lucide-react";
+import { Button } from "./ui/button";
+import { scrollToSection } from "@/lib/utils";
+import Image from "next/image";
 
+// Import MotionDiv dynamically for animation
 const MotionDiv = dynamic(() => import("framer-motion").then((mod) => mod.motion.div), {
   ssr: false,
   loading: () => <div>Loading...</div>,
-})
+});
 
 export default function About() {
+  const [typedText, setTypedText] = useState("");
+  const fullText = "Full-Stack Web Developer | Entrepreneur";
+
+  // Typewriter Effect
+  useEffect(() => {
+    if (typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1));
+      }, 100);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [typedText]);
+
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
-  })
+  });
 
   return (
     <section id="about" className="bg-secondary/30 py-12">
@@ -29,7 +45,7 @@ export default function About() {
         >
           <h2 className="section-title gradient-text">About Me</h2>
           <p className="text-center text-muted-foreground mt-4">
-            Get to know more about me and my journey as a Full-Stack Web Developer
+            Get to know more about me and my journey as a Full-Stack Web Developer & Entrepreneur
           </p>
         </MotionDiv>
 
@@ -41,10 +57,10 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl border border-primary/20">
+            <div className="relative w-full h-[600px] rounded-lg overflow-hidden shadow-xl border border-primary/20">
               <Image
-                src="/hero.jpg"
-                alt="Abarna Selvanathan"
+                src="/aboutme.jpg"
+                alt="Abarna Selvanathan - Web Developer & Entrepreneur"
                 fill
                 className="object-cover w-full h-full"
               />
@@ -59,7 +75,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-2xl font-bold mb-4">Full-Stack Web Developer</h3>
+            <h3 className="text-2xl font-bold mb-4">{typedText}</h3>
             <p className="text-muted-foreground mb-6">
               I&apos;m Abarna Selvanathan, a passionate Full-Stack Web Developer with expertise in building modern,
               responsive, and user-friendly web applications. I specialize in Next.js, React.js, Node.js, and various
@@ -73,6 +89,13 @@ export default function About() {
               I&apos;m constantly learning and adapting to new technologies to stay at the forefront of web development
               trends and best practices.
             </p>
+            <p className="text-muted-foreground mb-6">
+              In addition to my work as a Full-Stack Web Developer, I am also an entrepreneur. I run a small online
+              business focused on providing high-quality products. Through this venture, I&apos;ve developed skills in
+              managing product listings, e-commerce platforms, and customer interactions. My experience as a business
+              owner has sharpened my problem-solving, organizational, and leadership abilities, which I apply to both my
+              web development work and business operations.
+            </p>
 
             <Button
               size="lg"
@@ -82,28 +105,9 @@ export default function About() {
               Get in Touch
               <ArrowDown className="p-1" />
             </Button>
-
-            {/* <div className="grid grid-cols-2 gap-4 mt-8">
-              <div>
-                <h4 className="font-medium text-primary">Location</h4>
-                <p>Thirunawarkulam, Vavuniya</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-primary">Email</h4>
-                <p>abarnaselvanathan7@gmail.com</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-primary">Phone</h4>
-                <p>+94 77 698 9655</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-primary">Availability</h4>
-                <p>Open to opportunities</p>
-              </div>
-            </div> */}
           </MotionDiv>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, FileText } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 import { Button } from "./ui/button"
 
@@ -42,12 +42,38 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+
+          <div className="flex items-center justify-center lg:justify-start  space-x-4">
+            <a
+              href="https://drive.google.com/file/d/14BbJeAul9TmEtqQSqASfj_pz5FXmADHz/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground/70 hover:text-accent transition-colors py-1 px-2 rounded-md border-2 border-blue-300 hover:border-blue-500"
+            >
+              <FileText className="h-6 w-6" />
+              <span>View CV</span>
+            </a>
+          </div>
+
           <ThemeToggle />
         </nav>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center justify-center lg:justify-start space-x-4">
+            <a
+              href="https://drive.google.com/file/d/14BbJeAul9TmEtqQSqASfj_pz5FXmADHz/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-foreground/70 hover:text-accent transition-colors py-1 px-2 rounded-md border-2 border-blue-500 hover:border-blue-700"
+            >
+              <FileText className="h-6 w-6" />
+              <span>View CV</span>
+            </a>
+          </div>
+
           <ThemeToggle />
+
           <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
@@ -74,4 +100,3 @@ export default function Navbar() {
     </header>
   )
 }
-

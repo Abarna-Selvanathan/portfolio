@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ArrowDown, Github, Linkedin } from "lucide-react"
+import { ArrowDown, Github, Linkedin, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { scrollToSection } from "@/lib/utils"
 import Image from "next/image"
@@ -10,20 +10,35 @@ import Image from "next/image"
 const MotionDiv = ({ children, ...props }: any) => <div {...props}>{children}</div>
 
 export default function Hero() {
-  const [typedText, setTypedText] = useState("")
-  const fullText = "Full-Stack Web Developer"
-  const [textIndex, setTextIndex] = useState(0)
+  const [displayText, setDisplayText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
 
   useEffect(() => {
-    if (textIndex < fullText.length) {
-      const timeout = setTimeout(() => {
-        setTypedText((prevText) => prevText + fullText[textIndex])
-        setTextIndex((prevIndex) => prevIndex + 1)
-      }, 100)
+    const texts = ["Full-Stack Web Developer", "Entrepreneur"];
+    const interval = setInterval(() => {
+      if (!isDeleting) {
+        if (charIndex < texts[textIndex].length) {
+          setDisplayText((prev) => prev + texts[textIndex][charIndex]);
+          setCharIndex(charIndex + 1);
+        } else {
+          setTimeout(() => setIsDeleting(true), 1000);
+        }
+      } else {
+        if (charIndex > 0) {
+          setDisplayText((prev) => prev.slice(0, -1));
+          setCharIndex(charIndex - 1);
+        } else {
+          setIsDeleting(false);
+          setTextIndex((textIndex + 1) % texts.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
 
-      return () => clearTimeout(timeout)
-    }
-  }, [textIndex, fullText])
+    return () => clearInterval(interval);
+  }, [charIndex, isDeleting, textIndex]);
 
   return (
     <section id="home" className="xl:min-h-screen flex items-center pt-40 pb-20 relative overflow-hidden">
@@ -41,10 +56,10 @@ export default function Hero() {
               Hi, I'm <span className="gradient-text">Abarna Selvanathan</span>
             </h1>
             <div className="h-12 mb-6">
-              <p className="text-xl md:text-2xl font-medium typing-container">{typedText}</p>
+              <p className="text-xl md:text-2xl font-medium typing-container">{displayText}</p>
             </div>
             <p className="text-foreground/80 text-lg mb-8 max-w-lg">
-              I build modern, responsive web applications with cutting-edge technologies. Let's bring your ideas to life!
+              Bringing your ideas to life with cutting-edge, responsive web solutions.
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -84,6 +99,7 @@ export default function Hero() {
                 <Linkedin className="h-6 w-6" />
                 <span className="sr-only">LinkedIn</span>
               </a>
+              
             </div>
           </div>
         </MotionDiv>
@@ -99,7 +115,7 @@ export default function Hero() {
           <div className="absolute inset-0 h-full w-[19rem] xl:w-[26rem] mx-auto rounded-xl xl:rounded-3xl overflow-hidden">
             <Image
               src="/hero.jpg"
-              alt="Abinaya"
+              alt="Abarna"
               fill
               className="object-cover"
             />

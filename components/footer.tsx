@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react"
+import { Github, Linkedin, Mail, FileText, ArrowUp } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -43,6 +43,15 @@ export default function Footer() {
                 aria-label="Email"
               >
                 <Mail size={20} />
+              </a>
+              <a
+                href="https://drive.google.com/file/d/14BbJeAul9TmEtqQSqASfj_pz5FXmADHz/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/70 hover:text-accent transition-colors"
+              >
+                <FileText className="h-6 w-6" />
+                <span className="sr-only">CV</span>
               </a>
             </div>
 

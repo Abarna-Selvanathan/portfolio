@@ -18,66 +18,74 @@ export default function Projects() {
     threshold: 0.1,
   })
 
-  const categories = ["All", "Web App", "Frontend", "Backend", "Full Stack"]
+  const categories = ["All","Frontend","Full Stack"]
   const [activeCategory, setActiveCategory] = useState("All")
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description:
-        "A full-stack e-commerce platform with user authentication, product catalog, cart functionality, and payment integration.",
-      image: "/placeholder.svg?height=400&width=600",
+      title: "Aaraz",
+      description:"A full-stack e-commerce platform with user authentication, product catalog, cart functionality, and payment integration.",
+      image: "/aaraz.png?height=400&width=600",
       technologies: ["Next.js", "MongoDB", "Express", "Node.js"],
       category: "Full Stack",
-      github: "#",
-      demo: "#",
+      github: "https://github.com/Abarna-Selvanathan/Aaraz-Project",
+      demo: "https://aarazorg.vercel.app/",
+    },
+
+    {
+      title: "Coffee",
+      description: "Streamlines coffee shop ordering with a user-friendly platform, enhancing customer experience and operational efficiency.",
+      image: "/coffee.png?height=400&width=600",
+      technologies: ["HTML", "CSS"],
+      category: "Frontend",
+      github: "https://github.com/Abarna-Selvanathan/coffee-website",
+      demo: "https://coffee-orpin-mu.vercel.app/",
     },
     {
-      title: "Task Management Dashboard",
-      description:
-        "A responsive task management application with drag-and-drop functionality, user roles, and real-time updates.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React.js", "TypeScript", "Node.js", "MongoDB"],
-      category: "Web App",
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Portfolio Website",
-      description: "A modern portfolio website with dark/light mode, animations, and contact form integration.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Next.js", "Tailwind CSS", "EmailJS"],
+      title: "Plantex",
+      description: "Plantselling online static platform.",
+      image: "/plantex.png?height=400&width=600",
+      technologies: ["HTML", "CSS", "JavaScript"],
       category: "Frontend",
       github: "#",
-      demo: "#",
+      demo: "https://plantex-topaz.vercel.app/",
     },
     {
-      title: "RESTful API Service",
-      description: "A comprehensive RESTful API service with authentication, rate limiting, and data validation.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT"],
-      category: "Backend",
-      github: "#",
-      demo: "#",
+      title: "Calculator",
+      description: "A simple and interactive calculator featuring a clean design and smooth functionality for quick calculations.",
+      image: "/calculator.png?height=400&width=600",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      category: "Frontend",
+      github: "https://github.com/Abarna-Selvanathan/mini-project-calculator-",
+      demo: "https://calculator-kappa-rosy.vercel.app/",
     },
     {
-      title: "Social Media Dashboard",
-      description: "A social media analytics dashboard with data visualization and reporting features.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React.js", "Chart.js", "Node.js", "Express"],
-      category: "Web App",
-      github: "#",
-      demo: "#",
+      title: "Digital clock",
+      description: "A stylish and functional digital clock displaying real-time hours, minutes, and seconds with a clean and modern design.",
+      image: "/Digital clock.png?height=400&width=600",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      category: "Frontend",
+      github: "https://github.com/Abarna-Selvanathan/mini-project-Digital-clock",
+      demo: "https://clock-sigma-eight.vercel.app/",
     },
     {
-      title: "Blog Platform",
-      description: "A full-featured blog platform with content management, user authentication, and commenting system.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Next.js", "MongoDB", "Express", "Node.js"],
-      category: "Full Stack",
-      github: "#",
-      demo: "#",
+      title: "Rock-paper-scissor game",
+      description: "A fun and interactive Rock-Paper-Scissors game with smooth animations and real-time player feedback.",
+      image: "/srock-paper-scissor game.png?height=400&width=600",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      category: "Frontend",
+      github: "https://github.com/Abarna-Selvanathan/mini-projet-Srock-paper-scissor-game",
+      demo: "https://srock-paper-scissor-game.vercel.app/",
     },
+    // {
+    //   title: "Image slider",
+    //   description: "An interactive image slider with smooth transitions, allowing users to navigate through images effortlessly.",
+    //   image: "/image slider.png?height=400&width=600",
+    //   technologies: ["HTML", "CSS", "JavaScript"],
+    //   category: "Frontend",
+    //   github: "https://github.com/Abarna-Selvanathan/mini-project-Image-slider",
+    //   demo: "https://image-slider-mu-teal.vercel.app/",
+    // },
   ]
 
   const filteredProjects =
@@ -113,7 +121,7 @@ export default function Projects() {
 
         <div className="flex justify-center mb-12">
           <Tabs defaultValue="All" className="w-full">
-            <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-8 max-w-3xl w-full mx-auto">
+            <TabsList className="grid grid-cols-2 md:grid-cols-3 mb-8 max-w-3xl w-full mx-auto">
               {categories.map((category) => (
                 <TabsTrigger key={category} value={category} onClick={() => setActiveCategory(category)}>
                   {category}
